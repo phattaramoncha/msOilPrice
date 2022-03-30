@@ -9,7 +9,7 @@ namespace msOilPrice.Controllers
 {
     public class PTTPrice
     {
-        public fJson.Data GetOilPriceDatas()
+        public fJson.Data GetOilPriceData()
         {
             try
             {

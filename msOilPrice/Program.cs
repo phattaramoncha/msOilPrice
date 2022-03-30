@@ -8,10 +8,10 @@ namespace msOilPrice
         public static void Main(string[] args)
         {
             PTTPrice pttPrice = new PTTPrice();
-            var data = pttPrice.GetOilPriceDatas();
+            var data = pttPrice.GetOilPriceData();
 
-            if (data.priceDate.Date == DateTime.Now.Date)
-            {
+            // if (data.priceDate.Date == DateTime.Now.Date)
+            // {
                 foreach (var im in data.priceData)
                 {
                     // Console.WriteLine(im.oilTypeId);
@@ -23,7 +23,7 @@ namespace msOilPrice
                         // price
                     }
                 }
-            }
+            // }
         }
     }
 }

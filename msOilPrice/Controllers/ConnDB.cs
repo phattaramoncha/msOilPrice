@@ -14,7 +14,7 @@ namespace msOilPrice.Controllers
             getConnString();
         }
 
-        public void getConnString()
+        public void getConnString() 
         {
             var appSettings = ConfigurationManager.AppSettings;
             _connectSting = appSettings["crm_db"];
