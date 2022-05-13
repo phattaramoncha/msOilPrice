@@ -11,16 +11,16 @@ namespace msOilPrice.Controllers
 
         public ConnDB()
         {
-            getConnString();
+            GetConnString();
         }
 
-        public void getConnString() 
+        public void GetConnString()
         {
             var appSettings = ConfigurationManager.AppSettings;
             _connectSting = appSettings["crm_db"];
         }
 
-        public void postPriceOil(DateTime priceDate, double price)
+        public void PostPriceOil(DateTime priceDate, double price)
         {
             using (var myConn = new SqlConnection(_connectSting))
             {
@@ -43,7 +43,7 @@ namespace msOilPrice.Controllers
                     {
                         Console.WriteLine(e);
                         SendtoEmail sendtoEmail = new SendtoEmail();
-                        sendtoEmail.postMail(e.ToString());
+                        sendtoEmail.PostMail(e.ToString());
                         throw;
                     }
                 }

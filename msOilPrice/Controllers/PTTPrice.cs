@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -9,14 +10,27 @@ namespace msOilPrice.Controllers
 {
     public class PTTPrice
     {
+        private string Url;
+
+        public PTTPrice()
+        {
+            GetUrl();
+        }
+
+        public void GetUrl()
+        {
+            var appSettings = ConfigurationManager.AppSettings;
+            Url = appSettings["api_ptt"];
+        }
+
         public fJson.Data GetOilPriceData()
         {
             try
             {
                 string html = string.Empty;
-                string url = @"https://orapiweb.pttor.com/api/oilprice/LatestOilPrice";
+                // string url = @"https://orapiweb.pttor.com/api/oilprice/LatestOilPrice";
 
-                HttpWebRequest request = (HttpWebRequest) WebRequest.Create(url);
+                HttpWebRequest request = (HttpWebRequest) WebRequest.Create(Url);
                 request.AutomaticDecompression = DecompressionMethods.GZip;
                 request.Accept = "*/*";
                 request.ContentType = "application/json";
@@ -35,7 +49,7 @@ namespace msOilPrice.Controllers
             {
                 Console.WriteLine(e);
                 SendtoEmail sendtoEmail = new SendtoEmail();
-                sendtoEmail.postMail(e.ToString());
+                sendtoEmail.PostMail(e.ToString());
                 throw;
             }
         }

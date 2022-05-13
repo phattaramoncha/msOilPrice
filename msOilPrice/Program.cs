@@ -1,5 +1,4 @@
-﻿using System;
-using msOilPrice.Controllers;
+﻿using msOilPrice.Controllers;
 
 namespace msOilPrice
 {
@@ -12,17 +11,17 @@ namespace msOilPrice
 
             // if (data.priceDate.Date == DateTime.Now.Date)
             // {
-                foreach (var im in data.priceData)
+            foreach (var im in data.priceData)
+            {
+                // Console.WriteLine(im.oilTypeId);
+                if (im.nameEn == "Gasohol 95")
                 {
-                    // Console.WriteLine(im.oilTypeId);
-                    if (im.nameEn == "Gasohol 95")
-                    {
-                        // Console.WriteLine(im.nameEn);
-                        ConnDB connDb = new ConnDB();
-                        connDb.postPriceOil(im.priceDate, im.price);
-                        // price
-                    }
+                    // Console.WriteLine(im.nameEn);
+                    ConnDB connDb = new ConnDB();
+                    connDb.PostPriceOil(im.priceDate, im.price);
+                    // price
                 }
+            }
             // }
         }
     }
