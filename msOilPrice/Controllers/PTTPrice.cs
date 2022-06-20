@@ -27,15 +27,23 @@ namespace msOilPrice.Controllers
         {
             try
             {
-                string html = string.Empty;
-                // string url = @"https://orapiweb.pttor.com/api/oilprice/LatestOilPrice";
+                string html = string.Empty; // string url = @"https://orapiweb.pttor.com/api/oilprice/LatestOilPrice";
 
-                HttpWebRequest request = (HttpWebRequest) WebRequest.Create(Url);
+                System.Net.ServicePointManager.SecurityProtocol |=
+                    SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+
+                // using (WebClient webClient = new WebClient())
+                // {
+                //     string str = webClient.DownloadString(@Url);
+                // }
+
+                HttpWebRequest request =
+                    (HttpWebRequest)WebRequest.Create(@Url); //Url
                 request.AutomaticDecompression = DecompressionMethods.GZip;
                 request.Accept = "*/*";
                 request.ContentType = "application/json";
 
-                using (HttpWebResponse response = (HttpWebResponse) request.GetResponse())
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 using (Stream stream = response.GetResponseStream())
                 using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
                 {
